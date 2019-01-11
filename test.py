@@ -5,8 +5,4 @@ import config_reader as ini_r
 
 import yahoo_news_spider.yahoo_news_search as ys
 
-# ys.get_news_count()
-import yahoo_news_spider.data_repertory.yahoo_news_repertory as ysr
-
-#ysr.database_search('wintercat_demobase')
-#ysr.create_database('wintercat_demobase')
+ys.get_news_info_data('https://news.yahoo.co.jp/pickup/6309848')

@@ -28,6 +28,28 @@ def get_news_count():
     return count_info[count_info.index('/') + 1:len(count_info) - 1]
 
 
+# 获取新闻的data
+def get_news_info_data(news_url):
+    headers = {'User-Agent': fake_user.get_fake_user()}
+    search_request = urllib_request.Request(url=news_url, headers=headers)
+    search_page = urllib_request.urlopen(search_request).read().decode('utf8')
+    beautiful_soup_news = BeautifulSoup(search_page, 'lxml')
+    # 获取新闻全部
+    real_news_link = beautiful_soup_news.find('a', class_='newsLink').get('href')
+    if real_news_link != '':
+        headers = {'User-Agent': fake_user.get_fake_user()}
+        search_request = urllib_request.Request(url=news_url, headers=headers)
+        search_page = urllib_request.urlopen(search_request).read().decode('utf8')
+        beautiful_soup_news = BeautifulSoup(search_page, 'lxml')
+        print(beautiful_soup_news)
+
+
+        return 1
+
+    else:
+        return -1
+
+
 def get_news():
     data = get_search_data()
     list_box_wrap = data.find_all('li', class_='ListBoxwrap')
@@ -44,8 +66,10 @@ def get_news():
 
     print('img:', list_box_wrap[0].find(class_='thumb').find('img').get('data-src'))
 
-    print('new_info:', list_box_wrap[0].find('a').get('href'))
+    # print('new_info:', list_box_wrap[0].find('a').get('href'))
 
+    print(list_box_wrap[0].find('a').get('href'))
 
+    # print(get_news_info_data(news_info_url))
 
     return 0
