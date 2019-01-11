@@ -13,11 +13,12 @@ class Mysql_Connection_Tool(object):
 
     # 数据库连接池连接
     @staticmethod
+    # db=ini_r.read_config('MysqlConfig', 'db')
     def get_mysql_connection():
         if Mysql_Connection_Tool.__pool is None:
-            __pool = PooledDB(creator=pymysql, mincached=1, maxcached=20, user=ini_r.read_config('MysqlConfig', 'user'),
+            __pool = PooledDB(creator=pymysql, mincached=1, maxcached=20,
+                              user=ini_r.read_config('MysqlConfig', 'user'),
                               passwd=ini_r.read_config('MysqlConfig', 'password'),
-                              db=ini_r.read_config('MysqlConfig', 'db'),
                               host=ini_r.read_config('MysqlConfig', 'host'),
                               # port is not str
                               port=int(ini_r.read_config('MysqlConfig', 'port')),

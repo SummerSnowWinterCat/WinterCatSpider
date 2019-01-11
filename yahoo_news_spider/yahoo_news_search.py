@@ -47,4 +47,5 @@ def get_news():
     print('new_info:', list_box_wrap[0].find('a').get('href'))
 
 
+
     return 0
