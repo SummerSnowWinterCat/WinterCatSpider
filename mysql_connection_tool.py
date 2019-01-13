@@ -21,6 +21,7 @@ class Mysql_Connection_Tool(object):
                               passwd=ini_r.read_config('MysqlConfig', 'password'),
                               host=ini_r.read_config('MysqlConfig', 'host'),
                               # port is not str
+                              db=ini_r.read_config('DataBase', 'db'),
                               port=int(ini_r.read_config('MysqlConfig', 'port')),
                               charset=ini_r.read_config('MysqlConfig', 'charset'))
             print('<database connection success!>')
